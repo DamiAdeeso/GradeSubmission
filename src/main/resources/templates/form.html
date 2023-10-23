@@ -90,14 +90,15 @@
     <div class="container">
       <h2>Grade Portal</h2>
       <form method="post" th:object="${grade}" th:action="@{/handlesubmit}">
+        <p style="color: red" th:errors="*{name}"></p>
         <input type="text" placeholder="Name" th:field="*{name}">
-        <input type="text" placehold er="Score" th:field="*{score}">
+        <input type="text" placeholder="Score" th:field="*{score}">
+        <p style="color: red" th:errors="*{subject}"></p>
         <input type="text" placeholder="Subject" th:field="*{subject}">
         <input type="hidden" th:field="*{id}">
         <br><br>
         <input type="submit" value="Submit">
       </form>
-
     </div>
 </body>
 </html>

@@ -1,9 +1,10 @@
 package Models;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 public class Grade {
-
+    @NotBlank(message="Name cannot be Blank")
     private String name;
 
     public String getId() {
@@ -13,7 +14,7 @@ public class Grade {
     public void setId(String id) {
         this.id = id;
     }
-
+    @NotBlank(message="Subject cannot be blank")
     private String subject;
     private String score;
 
