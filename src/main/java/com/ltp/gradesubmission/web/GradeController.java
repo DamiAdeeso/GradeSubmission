@@ -26,9 +26,7 @@ import com.ltp.gradesubmission.entity.Grade;
 public class GradeController {
 
     GradeService gradeService;
-
     StudentRepository studentRepository;
-
     GradeRepository gradeRepository;
     @GetMapping("/student/{studentId}/course/{courseId}")
     public ResponseEntity<Grade> getGrade(@PathVariable Long studentId, @PathVariable Long courseId) {

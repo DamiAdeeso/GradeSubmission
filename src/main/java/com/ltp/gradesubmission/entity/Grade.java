@@ -23,5 +23,8 @@ public class Grade {
     @JoinColumn(name="student_id",referencedColumnName = "id",nullable = false)
     private Student student;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name="course_id",referencedColumnName = "id",nullable = false)
+    private Course course;
 
 }
