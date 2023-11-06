@@ -1,5 +1,6 @@
 package com.ltp.gradesubmission.entity;
 
+import com.ltp.gradesubmission.validation.Score;
 import jakarta.persistence.*;
 import lombok.*;
 @Getter
@@ -20,6 +21,7 @@ public class Grade {
     private Long id;
 
     @Column(name = "score", nullable = false)
+    @Score(message = "Score must be a letter grade")
     private String score;
 
     @ManyToOne(optional = false)

@@ -4,6 +4,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -20,15 +21,18 @@ public class Course {
     private Long id;
 
     @NonNull
+    @NotBlank(message= "Subject cannot be Blank")
     @Column(name = "subject", nullable = false)
     private String subject;
 
     @NonNull
+    @NotBlank(message="Course code cannot be blank")
     @Column(name = "code", nullable = false, unique = true)
     private String code;
 
     @NonNull
     @Column(name = "description", nullable = false)
+    @NotBlank(message = "Description cannot be blank")
     private String description;
 
     @JsonIgnore

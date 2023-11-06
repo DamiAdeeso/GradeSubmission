@@ -1,9 +1,12 @@
 package com.ltp.gradesubmission.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Past;
 import lombok.*;
 
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,6 +27,7 @@ public class Student {
     private String name;
 
     @NonNull
+    @Past(message = "Birth date cannot be in the past")
     @Column(name="birth_date",nullable=false)
     private LocalDate birthDate;
 
