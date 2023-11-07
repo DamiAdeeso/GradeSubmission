@@ -16,6 +16,10 @@ public class ErrorResponse {
         this.message = message;
     }
 
+    public ErrorResponse(String message) {
+        this.timestamp = LocalDateTime.now();
+        this.message.add(message);
+    }
     public LocalDateTime getTimestamp() {
         return this.timestamp;
     }

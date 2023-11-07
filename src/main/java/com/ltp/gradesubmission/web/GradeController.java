@@ -43,12 +43,27 @@ public class GradeController {
     }
 
     @PostMapping("/student/{studentId}/course/{courseId}")
-    public ResponseEntity<?> saveGrade(@RequestBody @Valid Grade grade, BindingResult bindingResult, @PathVariable Long studentId, @PathVariable Long courseId) {
+    public ResponseEntity<?> saveGrade(@RequestBody @Valid Grade grade, BindingResult bindingResult,
+                                       @PathVariable Long studentId, @PathVariable Long courseId) {
+        // Handle validation errors and create an error response
         ErrorResponse response = respondError(bindingResult);
-        ResponseEntity<?> responseEntity = (response == null)
-                ? new ResponseEntity<>(gradeService.saveGrade(grade, studentId, courseId), HttpStatus.CREATED)
-                : new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        return responseEntity;
+
+        if (!response.equals("")) {
+            // Log the validation errors or return a more detailed ErrorResponse
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            // Save the grade, handle exceptions if necessary
+            Grade savedGrade = gradeService.saveGrade(grade, studentId, courseId);
+            // Log success or any other necessary actions
+            return new ResponseEntity<>(savedGrade, HttpStatus.CREATED);
+        } catch (Exception ex) {
+            // Handle exceptions, log the error, and return an appropriate error response
+            ErrorResponse errorResponse = new ErrorResponse("An error occurred while saving the grade");
+            return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
+
+        }
     }
 
     @PutMapping("/student/{studentId}/course/{courseId}")
@@ -87,7 +102,8 @@ public class GradeController {
             return  new ErrorResponse(errors);
 
         }
-        return new ErrorResponse(null);
+        return new ErrorResponse("");
     }
+
 
 }
