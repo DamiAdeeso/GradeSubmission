@@ -1,9 +1,9 @@
 package com.ltp.gradesubmission.exception;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ErrorResponse {
 
@@ -16,10 +16,6 @@ public class ErrorResponse {
         this.message = message;
     }
 
-    public ErrorResponse(String message) {
-        this.timestamp = LocalDateTime.now();
-        this.message.add(message);
-    }
     public LocalDateTime getTimestamp() {
         return this.timestamp;
     }
